@@ -1,5 +1,5 @@
 const axios = require("axios").default;
-const player = require('play-sound')();
+const notifier = require('node-notifier');
 const api = axios.get(
   "https://heb-ecom-covid-vaccine.hebdigital-prd.com/vaccine_locations.json"
 );
@@ -11,12 +11,13 @@ setInterval(() => {
           const locals = data.filter(res => res.city === 'LAREDO');
 
           locals.forEach(location => {
-              if (location.openAppointmentSlots = 0) {
-                player.play('./got_another_one.mp3', (err) => {
-                    if (err) console.log(`Could not play sound: ${err}`);
+              if (location.name == 'Zapata Highway H-E-B') {
+                notifier.notify({
+                  title: 'HEB-Vaccine',
+                  message: `Yeahh, we found ${location.openAppointmentSlots} slots available on ${location.name}!`
                 });
               }
           });
-          console.log(locals);
+          // console.log(locals);
       })      
 }, interval)
