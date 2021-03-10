@@ -32,7 +32,9 @@ async function main() {
 
     // We are looking for stores with openAppointments
     const listOfAvailability = data.locations
-      .filter(stores => stores.city === 'LAREDO' && stores.openAppointmentSlots > 0);
+      .filter(stores => stores.city === 'LAREDO'
+      && stores.openAppointmentSlots > 0
+      );
 
     if (listOfAvailability.length) {
       notify(listOfAvailability);
