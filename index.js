@@ -15,7 +15,7 @@ const SECOND_INTERVAL = 0.3;
 const HTTP_OK = 200;
 
 function notify(arrayOfLocations) {
-  const valores = arrayOfLocations.filter((location) => {
+  const available = arrayOfLocations.filter((location) => {
     const value = myCache.get(location.storeNumber);
     if (value !== undefined) {
       if (value.spots !== location.openAppointmentSlots) {
