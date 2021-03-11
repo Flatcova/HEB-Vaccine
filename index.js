@@ -15,16 +15,18 @@ const SECOND_INTERVAL = 0.3;
 const HTTP_OK = 200;
 
 function notify(arrayOfLocations) {
+<<<<<<< HEAD
 
   const cacheKeys = myCache.keys();
   const locationKeys = arrayOfLocations.map(x => x.storeNumber);
   const difference = cacheKeys.filter(key => !locationKeys.includes(key))
 
   myCache.del(difference);
-
-  const valores = arrayOfLocations.filter((location) => {
+=======
+  const availables = arrayOfLocations.filter((location) => {
+>>>>>>> 8202ff9f39a42934d230392c3a2ce0760b0710e3
     const value = myCache.get(location.storeNumber);
-    if (value !== undefined) {
+    if (value !== undefined && value.spots !== location.openAppointmentSlots) {
       if (value.spots !== location.openAppointmentSlots) {
         return location;
       }
@@ -37,8 +39,8 @@ function notify(arrayOfLocations) {
     }
   });
 
-  if (valores.length) {
-    const available = valores.reduce(
+  if (availables.length) {
+    const available = availables.reduce(
       (acc, store) =>
         `${acc}\nWe found ${store.openAppointmentSlots} slots available at '${store.name}'!`,
       ""
