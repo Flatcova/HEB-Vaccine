@@ -15,7 +15,7 @@ const SECOND_INTERVAL = 0.3;
 const HTTP_OK = 200;
 
 function notify(arrayOfLocations) {
-  const available = arrayOfLocations.filter((location) => {
+  const availables = arrayOfLocations.filter((location) => {
     const value = myCache.get(location.storeNumber);
     if (value !== undefined && value.spots !== location.openAppointmentSlots) {
       if (value.spots !== location.openAppointmentSlots) {
@@ -30,8 +30,8 @@ function notify(arrayOfLocations) {
     }
   });
 
-  if (valores.length) {
-    const available = valores.reduce(
+  if (availables.length) {
+    const available = availables.reduce(
       (acc, store) =>
         `${acc}\nWe found ${store.openAppointmentSlots} slots available at '${store.name}'!`,
       ""
