@@ -15,6 +15,13 @@ const SECOND_INTERVAL = 0.3;
 const HTTP_OK = 200;
 
 function notify(arrayOfLocations) {
+
+  const cacheKeys = myCache.keys();
+  const locationKeys = arrayOfLocations.map(x => x.storeNumber);
+  const difference = cacheKeys.filter(key => !locationKeys.includes(key))
+
+  myCache.del(difference);
+
   const valores = arrayOfLocations.filter((location) => {
     const value = myCache.get(location.storeNumber);
     if (value !== undefined) {
@@ -72,7 +79,7 @@ async function main() {
 
     // We are looking for stores with openAppointments
     const listOfAvailability = data.locations.filter(
-      (stores) => stores.city === "LAREDO" && stores.openAppointmentSlots == 0
+      (stores) => stores.city === "LAREDO" && stores.openAppointmentSlots > 0
     );
 
     if (listOfAvailability.length) {
