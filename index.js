@@ -72,11 +72,7 @@ async function main() {
 
     // We are looking for stores with openAppointments
     const listOfAvailability = data.locations.filter(
-<<<<<<< HEAD
-      (stores) => stores.city === "LAREDO" && stores.openAppointmentSlots == 0
-=======
       (stores) => stores.city === "LAREDO" && stores.openAppointmentSlots > 0
->>>>>>> Twilio_dev
     );
 
     if (listOfAvailability.length) {
