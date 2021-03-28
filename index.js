@@ -11,6 +11,7 @@ const HEB_URL = process.env.HEB_API || '';
 const twilioAccount = process.env.TWILIO_ACCOUNT || '';
 const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || '';
 const SMS_ENABLE = process.env.SMS_ENABLE || false;
+
 if (SMS_ENABLE){
   const client = require("twilio")(twilioAccount, twilioAuthToken);
 }
@@ -85,7 +86,7 @@ async function main() {
 
     // We are looking for stores with openAppointments
     const listOfAvailability = data.locations.filter(
-      (stores) => stores.city === "LAREDO" && stores.openAppointmentSlots > 1
+      (stores) => stores.city === "LAREDO" && stores.openAppointmentSlots > 0
     );
 
     if (listOfAvailability.length) {
